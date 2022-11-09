@@ -1,0 +1,59 @@
+.todo {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
+    margin: 10px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: 1fr auto auto;
+    font-size: 20px;
+    padding: 15px;
+}
+
+.btn {
+    margin: 10px;
+    padding: 7px 12px;
+    background-color: rgba(29, 146, 244, 0);
+    color: #1d91f3;
+    border: 2px solid #1d92f4;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+    transition: 0.5s;
+    background-color: #1d91f3;
+    color: white;
+}
+
+.input1 {
+    border: none;
+    font-size: 18px;
+}
+.input2 {
+    border: none;
+    font-size: 18px;
+    text-decoration: line-through;
+}
+
+@media screen and (max-width: 500px) {
+    .todo {
+        padding: 5px 0 5px 5px;
+        margin: 10px 0;
+        grid-template-columns: 50vw auto auto;
+    }
+    i {
+        font-size: 0.7em;
+    }
+    .btn {
+        padding: 2px 6px;
+        margin: 5px;
+    }
+    .input {
+        font-size: 15px;
+    }
+}
+

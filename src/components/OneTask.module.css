@@ -32,11 +32,25 @@
 .input1 {
     border: none;
     font-size: 18px;
+    color: #4b4b4b;
 }
 .input2 {
     border: none;
     font-size: 18px;
     text-decoration: line-through;
+    color: #4b4b4b;
+}
+.header1 {
+    border: none;
+    font-size: 28px;
+}
+.header2 {
+    border: none;
+    font-size: 28px;
+    text-decoration: line-through;
+}
+.inputs{
+    text-align: left;
 }
 
 @media screen and (max-width: 500px) {

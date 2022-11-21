@@ -10,27 +10,36 @@ const OneTask = observer(({tasks, RemoveTask, EditTask, DoneTask}: propsToDo) =>
         e.preventDefault();
         RemoveTask(id);
     }
-    const Edit = (value: string, id: number) => {
-        EditTask(value, id);
+    const Edit = (value: string, id: number, index: string) => {
+        EditTask(value, id, index);
     }
     const Done = (e: React.MouseEvent<HTMLButtonElement>, id: number) => {
         e.preventDefault();
         DoneTask(id);
     }
 
-    const ToDoes = tasks.map((task: task) =>
+    const ToDoes = tasks.map((task: task ) =>
         <form className={styles.todo} key={task.id}>
-        <input value={task.task}
-               onChange={(e) => Edit(e.currentTarget.value, task.id)}
-               className={task.done ? styles.input2 :  styles.input1}
-        />
-        <button className={styles.btn}
-                onClick={(e) => Done(e, task.id)}>
-            <i className="fa-solid fa-check"></i></button>
-        <button className={styles.btn}
-                onClick={(e) => Remove(e, task.id)}>
-            <i className="fa-regular fa-trash-can"></i></button>
-    </form>)
+            <div className={styles.inputs}>
+                <input type="text" value={task.header}
+                       onChange={(e) => Edit(e.currentTarget.value, task.id, 'header')}
+                       className={task.done ? styles.header2 : styles.header1}/>
+                <input value={task.task}
+                       onChange={(e) => Edit(e.currentTarget.value, task.id, 'task')}
+                       className={task.done ? styles.input2 : styles.input1}
+                       placeholder='Input description ... '
+                />
+                <input type="date" value={task.date}
+                       onChange={(e) => Edit(e.currentTarget.value, task.id, 'date')}
+                       />
+            </div>
+            <button className={styles.btn}
+                    onClick={(e) => Done(e, task.id)}>
+                <i className="fa-solid fa-check"></i></button>
+            <button className={styles.btn}
+                    onClick={(e) => Remove(e, task.id)}>
+                <i className="fa-regular fa-trash-can"></i></button>
+        </form>)
 
     return (<div>
         {ToDoes}

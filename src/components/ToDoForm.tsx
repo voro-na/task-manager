@@ -20,9 +20,8 @@ const ToDoForm = observer(({id}: any) => {
     const ChangeInput = (e: React.SyntheticEvent<HTMLInputElement>) => {
         SetUserInput(e.currentTarget.value);
     }
-    const CategoryTasks = TaskStore.GetTasks(id);
 
-    return (<div>
+    return <div>
             <form onSubmit={AddTask}>
                 <input value={UserInput}
                        onChange={ChangeInput}
@@ -30,11 +29,11 @@ const ToDoForm = observer(({id}: any) => {
                        className={styles.input}/>
                 <button className={styles.btn}>Add</button>
             </form>
-            <OneTask tasks={CategoryTasks}
+            <OneTask tasks={TaskStore.GetTasks(id)}
                      RemoveTask={TaskStore.RemoveTask}
                      EditTask={TaskStore.EditTask}
                      DoneTask={TaskStore.DoneTask}/>
-        </div>)
+        </div>
 })
 
 export default ToDoForm

@@ -32,6 +32,7 @@ const OneTask = observer(({tasks, RemoveTask, EditTask, DoneTask}: propsToDo) =>
                 <input type="date" value={task.date}
                        onChange={(e) => Edit(e.currentTarget.value, task.id, 'date')}
                        />
+                <input type="file"/>
             </div>
             <button className={styles.btn}
                     onClick={(e) => Done(e, task.id)}>

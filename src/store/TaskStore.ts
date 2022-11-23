@@ -16,7 +16,22 @@ class TaskStore {
         this.tasks.splice(index, 1);
     }
     EditTask = (value: string, id: number, index: string) => {
-        if (index === 'task')
+        switch (index) {
+            case 'task':
+                this.tasks.map((t: task) => (t.id === id ? t.task = value : t));
+                break
+            case 'header':
+                this.tasks.map((t: task) => (t.id === id ? t.header = value : t));
+                break
+            case 'date':
+                this.tasks.map((t: task) => (t.id === id ? t.date = value : t));
+                this.tasks.map((t: task) => (t.id === id && dayjs(t.date).isBefore(dayjs()) ?
+                    t.done = true : t.done = false));
+                break
+            default:
+                break
+        }
+/*        if (index === 'task')
             this.tasks.map((t: task) => (t.id === id ? t.task = value : t))
         else if (index === 'header')
             this.tasks.map((t: task) => (t.id === id ? t.header = value : t))
@@ -24,7 +39,7 @@ class TaskStore {
             this.tasks.map((t: task) => (t.id === id ? t.date = value : t))
             this.tasks.map((t: task) => (t.id === id && dayjs(t.date).isBefore(dayjs()) ?
                 t.done = true : t.done = false))
-        }
+        }*/
     }
     DoneTask = (id: number) => {
         this.tasks.map((t: task) => (t.id === id ? t.done = !t.done : t))

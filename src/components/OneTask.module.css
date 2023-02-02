@@ -1,24 +1,26 @@
 .todo {
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
-    margin: 10px;
     display: grid;
     align-items: center;
     justify-content: center;
-    grid-template-columns: 1fr auto auto;
-    font-size: 20px;
-    padding: 15px;
+    grid-template-columns: 60% auto auto;
+
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
+    margin: 0.7rem;
+    padding: 0.7rem;
+    font-size: 1.5em;
+
 }
 
 .btn {
-    margin: 10px;
-    padding: 7px 12px;
+    margin: 0.5em;
+    padding: 0.3em 0.5em;
     background-color: rgba(29, 146, 244, 0);
     color: #1d91f3;
     border: 2px solid #1d92f4;
     border-radius: 25px;
-    font-size: 18px;
+    font-size: 0.7em;
     font-weight: bold;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -30,27 +32,37 @@
 }
 
 .input1 {
+    margin: 0.3em;
     border: none;
-    font-size: 18px;
+    font-size: 1rem;
     color: #4b4b4b;
 }
 .input2 {
+    margin: 0.3em;
     border: none;
-    font-size: 18px;
+    font-size: 1rem;
     text-decoration: line-through;
     color: #4b4b4b;
 }
 .header1 {
+    margin: 0.3em;
     border: none;
-    font-size: 28px;
+    font-size: 1.5rem;
+    max-width: 100%;
 }
 .header2 {
+    margin: 0.3em;
     border: none;
-    font-size: 28px;
+    font-size: 1.5rem;
     text-decoration: line-through;
+    max-width: 100%;
+
 }
 .inputs{
-    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+
 }
 
 @media screen and (max-width: 500px) {
@@ -65,9 +77,6 @@
     .btn {
         padding: 2px 6px;
         margin: 5px;
-    }
-    .input {
-        font-size: 15px;
     }
 }
 

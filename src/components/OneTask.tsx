@@ -31,8 +31,10 @@ const OneTask = observer(({tasks, RemoveTask, EditTask, DoneTask}: propsToDo) =>
                 />
                 <input type="date" value={task.date}
                        onChange={(e) => Edit(e.currentTarget.value, task.id, 'date')}
+                       className={styles.input1}
                        />
-                <input type="file"/>
+                <input type="file"
+                       className={styles.input1}/>
             </div>
             <button className={styles.btn}
                     onClick={(e) => Done(e, task.id)}>
@@ -42,9 +44,7 @@ const OneTask = observer(({tasks, RemoveTask, EditTask, DoneTask}: propsToDo) =>
                 <i className="fa-regular fa-trash-can"></i></button>
         </form>)
 
-    return (<div>
-        {ToDoes}
-    </div>)
+    return <>{ToDoes}</>
 })
 
 export default OneTask

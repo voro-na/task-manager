@@ -1,12 +1,13 @@
-import React, {useState} from "react";
+import React, {memo, useState} from "react";
 import OneTask from "./OneTask";
-import styles from "./ToDoForm.module.css"
+import styles from "./OneCategory.module.css"
 import taskStore from "../store/TaskStore";
 import {observer} from "mobx-react-lite";
 
+
 const store = new taskStore()
 
-const ToDoForm = observer(({id}: any) => {
+const OneCategory= observer(({id}: any) => {
 
     const [TaskStore] = useState(() => store);
     const [UserInput, SetUserInput] = useState("");
@@ -21,7 +22,7 @@ const ToDoForm = observer(({id}: any) => {
         SetUserInput(e.currentTarget.value);
     }
 
-    return <div>
+    return <>
             <form onSubmit={AddTask}>
                 <input value={UserInput}
                        onChange={ChangeInput}
@@ -33,7 +34,7 @@ const ToDoForm = observer(({id}: any) => {
                      RemoveTask={TaskStore.RemoveTask}
                      EditTask={TaskStore.EditTask}
                      DoneTask={TaskStore.DoneTask}/>
-        </div>
+        </>
 })
 
-export default ToDoForm
+export default memo(OneCategory)

@@ -1,12 +1,15 @@
 import React, {useState} from "react";
-import ToDoForm from "./ToDoForm";
+import OneCategory from "./OneCategory";
 import styles from './Page.module.css'
 import {category} from "../models";
+import CaterogyStore from "../store/CategoryStore";
+import {observer} from "mobx-react-lite";
 
+const store = new CaterogyStore()
+const Page = observer(() => {
 
-const Page = () => {
-    const [categories, SetCat] = useState<category[]>([]);
-    const [UserInput, SetUserInput] = useState("");
+    const [categories] = useState(() => store);
+    const [userInput, SetUserInput] = useState("");
 
     const ChangeInput = (e: React.SyntheticEvent<HTMLInputElement>) => {
         SetUserInput(e.currentTarget.value);
@@ -14,49 +17,43 @@ const Page = () => {
 
     const AddCategory = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (!UserInput) return
+        if (!userInput) return
 
-        let NewCat: category = {
-            category: UserInput,
-            id: Math.trunc(Math.random() * 10000000),
-            show: true
-        }
-
-        SetCat([...categories, NewCat]);
+        categories.AddCategory(userInput)
         SetUserInput("");
     }
-    const RemoveCategory = (id: number) => {
-        SetCat(categories.filter((t: category) => t.id !== id));
+    const RemoveCategory = (e: React.MouseEvent<HTMLButtonElement>, id: number) => {
+        e.preventDefault()
+        categories.RemoveCategory(id)
     }
-    const ShowCategory = (id: number) => {
-        let data: category[] = [...categories];
-        let objIndex = categories.findIndex((obj: category) => obj.id === id);
-        data[objIndex].show = !data[objIndex].show
-        SetCat(data)
+    const ShowCategory = (e: React.MouseEvent<HTMLButtonElement>, id: number) => {
+        e.preventDefault()
+        categories.ShowCategory(id)
     }
 
-    const ToDoCategories = categories.map((t: category) => {
+    const ToDoCategories = categories.categories.map((t: category) => {
         return <div className={styles.container} key={t.id}>
             <div className={styles.category}>
 
-                <div className={styles.header}>{t.category}</div>
+                <div className={styles.headerCategory}>{t.category}</div>
 
                 <button className={styles.btn}
-                        onClick={(e) => ShowCategory(t.id)}><i
+                        onClick={(e) => ShowCategory(e, t.id)}><i
                     className="fa-solid fa-arrows-up-down"></i></button>
                 <button className={styles.btn}
-                        onClick={(e) => RemoveCategory(t.id)}><i
+                        onClick={(e) => RemoveCategory(e, t.id)}><i
                     className="fa-regular fa-trash-can"></i></button>
             </div>
-            {t.show && <ToDoForm id={t.id}/>}
+
+            {t.show && <OneCategory id={t.id}/>}
         </div>
     })
 
-    return (<div className={styles.page}>
+    return <div className={styles.page}>
         <header>TO DO</header>
 
         <form onSubmit={AddCategory}>
-            <input value={UserInput}
+            <input value={userInput}
                    onChange={ChangeInput}
                    placeholder="  Input category..."
                    className={styles.input}/>
@@ -66,7 +63,7 @@ const Page = () => {
         <div className={styles.main}>
             {ToDoCategories}
         </div>
-    </div>)
-}
+    </div>
+})
 
 export default Page

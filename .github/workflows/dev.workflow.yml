@@ -26,4 +26,10 @@ jobs:
           publish_dir: ./build
           github_token: ${{secrets.GITHUB_TOKEN}}
 
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: built-files
+          path: build
+
 

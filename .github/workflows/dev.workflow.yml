@@ -38,4 +38,23 @@ jobs:
           name: built-files
           path: build
 
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
 
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: built-files
+          path: build
+
+      - name: Send artifacts to telegram
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          document: "build/*"

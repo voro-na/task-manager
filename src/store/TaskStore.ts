@@ -13,7 +13,7 @@ class TaskStore {
         const index = this.tasks.map((item: task) => {
             return item.id
         }).indexOf(id);
-        debugger
+
         this.tasks.splice(index, 1);
     }
     EditTask = (value: string, id: number, index: string) => {
@@ -37,7 +37,7 @@ class TaskStore {
         this.tasks.map((t: task) => (t.id === id ? t.done = !t.done : t))
     }
     AddTask = (UserInput: string, category: number) => {
-        let NewTask: task = {
+        const NewTask: task = {
             task: '',
             id: Math.trunc(Math.random() * 10000000),
             done: false,

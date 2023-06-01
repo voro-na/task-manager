@@ -7,7 +7,7 @@ type props = {
     categories : any,
     userInput: string
 }
-const Categories = ({categories, userInput}: props) => {
+const Categories = ({categories}: props) => {
 
     const RemoveCategory = (e: React.MouseEvent<HTMLButtonElement>, id: number) => {
         e.preventDefault()

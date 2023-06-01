@@ -9,7 +9,7 @@ class CaterogyStore {
     }
     AddCategory = (userInput: string) => {
 
-        let newCat: category = {
+        const newCat: category = {
             category: userInput,
             id: Math.trunc(Math.random() * 10000000),
             show: true
@@ -24,8 +24,8 @@ class CaterogyStore {
         this.categories.splice(index, 1);
     }
     ShowCategory = (id: number) => {
-        let data: category[] = [...this.categories];
-        let objIndex = this.categories.findIndex((obj: category) => obj.id === id);
+        const data: category[] = [...this.categories];
+        const objIndex = this.categories.findIndex((obj: category) => obj.id === id);
         data[objIndex].show = !data[objIndex].show
     }
 

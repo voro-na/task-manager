@@ -38,6 +38,11 @@ jobs:
           name: built-files
           path: build
 
+      - name: Compress artifacts
+        run: |
+            zip -r build/artifacts.zip build
+            mv artifacts.zip build
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -57,14 +62,15 @@ jobs:
         with:
           name: built-files
           path: build
+          path-pattern: build/artifacts.zip
 
       - name: Send artifacts to telegram
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: send index.html
-          document: "build/index.html"
+          message: send  zip
+          document: "build/artifacts.zip"
 
       - name: Send css to telegram
         uses: appleboy/telegram-action@master

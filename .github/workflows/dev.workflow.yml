@@ -32,17 +32,16 @@ jobs:
       - name: Run Stylelint
         run: npm run lint:styles
 
-      - name: Upload artifact
+      - name: Archive artifacts
+        uses: montudor/action-zip@v1
+        with:
+          args: zip -r artifacts.zip build
+
+      - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
           name: built-files
-          path: build
-
-      - name: Compress artifacts
-        run: |
-            zip -r build/artifacts.zip build
-            mv artifacts.zip build
-
+          path: artifacts.zip
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -62,7 +61,6 @@ jobs:
         with:
           name: built-files
           path: build
-          path-pattern: build/artifacts.zip
 
       - name: Send artifacts to telegram
         uses: appleboy/telegram-action@master

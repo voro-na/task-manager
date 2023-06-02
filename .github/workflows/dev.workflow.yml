@@ -69,20 +69,3 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: send  zip
           document: "build/artifacts.zip"
-
-      - name: Send css to telegram
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_CHAT_ID }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: send css file
-          document: "build/static/css/*"
-
-      - name: Send js to telegram
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_CHAT_ID }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: send js file
-          document: "build/static/js/*"
-

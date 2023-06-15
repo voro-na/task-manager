@@ -23,11 +23,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build project
-        run: npm run build
-
       - name: Run ESLint
         run: npm run lint
+
+      - name: Build Docker container
+        run: docker build -t voronadya/task-manager:latest .
 
       - name: Archive artifacts
         uses: montudor/action-zip@v1
@@ -66,9 +66,6 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: send  zip
           document: "build/artifacts.zip"
-
-      - name: Build Docker container
-        run: docker build -t voronadya/task-manager:latest .
 
       - name: Log in to Docker Hub
         run: docker login -u voronadya -p ${{ secrets.DOCKERHUB_TOKEN }}

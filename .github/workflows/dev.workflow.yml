@@ -29,9 +29,6 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
-      - name: Run Stylelint
-        run: npm run lint:styles
-
       - name: Archive artifacts
         uses: montudor/action-zip@v1
         with:

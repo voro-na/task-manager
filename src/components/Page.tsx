@@ -35,7 +35,7 @@ const Page = observer(() => {
         return <div className={styles.container} key={t.id}>
             <div className={styles.category}>
 
-                <div className={styles.headerCategory}>{t.category}</div>
+                <div className={styles.headercategory}>{t.category}</div>
 
                 <button className={styles.btn}
                         onClick={(e) => ShowCategory(e, t.id)}><i

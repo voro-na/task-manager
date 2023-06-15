@@ -69,3 +69,12 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: send  zip
           document: "build/artifacts.zip"
+
+      - name: Build Docker container
+        run: docker build -t voronadya/task-manager:latest .
+
+      - name: Log in to Docker Hub
+        run: docker login -u voronadya -p ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Push Docker container to Docker Hub
+        run: docker push <YOUR_USERNAME>/task-manager:latest
